@@ -5,7 +5,7 @@ import Home from './components/Layouts/Home.js';
 function App() {
     return (
         <React.Fragment>
-            {/* <Header /> */}
+            <Header />
             <Home />
         </React.Fragment>
 
