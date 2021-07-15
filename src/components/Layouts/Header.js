@@ -3,9 +3,12 @@ import React from 'react';
 import classes from './Header.module.css';
 
 import logo from '../../images/logo.svg';
+import MenuIcon from '@material-ui/icons/Menu';
+import { useSelector } from 'react-redux';
 
+const Header = ({openNavBar}) => {
+    const cars = useSelector(state => state.cars);
 
-const Header = () => {
     return (
         <div className={classes.container}>
             {/* logo */}
@@ -16,19 +19,14 @@ const Header = () => {
 
             {/* menu */}
             <ul className={classes.menu}>
-                <li><a href="/">Model S</a></li>
-                <li><a href="/">Model 3</a></li>
-                <li><a href="/">Model X</a></li>
-                <li><a href="/">Model Y</a></li>
-                <li><a href="/">Solar Roof</a></li>
-                <li><a href="/">Solar Panels</a></li>
+                {cars && cars.map((car, i) => <li key={i}><a href="/">{car}</a></li>)}
             </ul>
 
             {/* right BURGER menu */}
             <div className={classes['right-menu']}>
-              <a href="/">Shop</a>
-              <a href="/">Account</a>
-              <a href="/">Menu</a>
+                <a href="/">Shop</a>
+                <a href="/">Account</a>
+                <MenuIcon style={{cursor: 'pointer'}} onClick={() => openNavBar()} className={classes['right-menu-icon']} />
             </div>
         </div>
     )
